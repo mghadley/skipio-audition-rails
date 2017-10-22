@@ -1,15 +1,18 @@
 h1.text-center Contacts
 .col-xs-10.col-xs-offset-1
   .row
-    - @contacts.each do |contact|
-      .col-xs-6
-        .card
-          h3.full-name = contact[:full_name]
-          ul
-            li
-              | Cell: 
-              = contact[:phone_mobile]
-            li
-              | Can recieve texts: 
-              = contact[:is_sms_enabled]
-          = link_to "Send Message", new_contact_message_path(contact[:id], contact_name: contact[:full_name]), class: "btn btn-primary"
+    - if @contacts.any?
+      - @contacts.each do |contact|
+        .col-xs-6
+          .card
+            h3.full-name = contact[:full_name]
+            ul
+              li
+                | Cell: 
+                = contact[:phone_mobile]
+              li
+                | Can recieve texts: 
+                = contact[:is_sms_enabled]
+            = link_to "Send Message", new_contact_message_path(contact[:id], contact_name: contact[:full_name]), class: "btn btn-primary"
+    - else
+      h2 No contacts were found. If you do have contacts, something must have gone wrong. Please try again later.
