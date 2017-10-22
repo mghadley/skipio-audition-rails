@@ -1,0 +1,11 @@
+.row
+  .col-xs-10.col-xs-offset-1
+    h1
+      | Message to
+      =< @contact
+
+    = form_tag contact_messages_path(@message.contact_id) do
+      .form-group
+        = text_area_tag :body, nil, rows: 5, required: true, class: "form-control"
+      .form-group
+        = submit_tag "Submit", class: "btn btn-primary"
